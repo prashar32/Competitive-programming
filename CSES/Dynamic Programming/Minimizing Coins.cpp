@@ -5,8 +5,7 @@
 // CSES        :- prashar32
 
 // Problem Link 
-// https://cses.fi/problemset/task/1633
-
+// https://cses.fi/problemset/task/1634
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -19,17 +18,22 @@ const ll mod = 1000000007;
 const ll N = 200005;
 
 void solve(){
-    int n;
-    cin>>n;
-    vector<ll>dp(n+1, 0);
-    dp[0] = 1;
-    for(int i=1 ; i<=n ; i++){
-        for(int j=i-1 ; j>=max((i-6), 0) ; j--){
-            dp[i] += dp[j];
-        }
-        dp[i] %= mod;
+    int n, x;
+    cin>>n>>x;
+    vector<int>coins(n);
+    for(int i=0 ; i<n ; i++){
+        cin>>coins[i];
     }
-    cout<<dp[n]<<"\n";
+    vector<int>dp(x+1, 1e6+5);
+    dp[0] = 0;
+    for(int i=1 ; i<=x ; i++){
+        for(int j=0 ; j<n ; j++){
+            if(i-coins[j]>=0 && dp[i-coins[j]] != 1e6+5){
+                dp[i] = min(dp[i], 1 + dp[i-coins[j]]);
+            }
+        }
+    }
+    cout<<dp[x]<<"\n";
     return;
 }
  
