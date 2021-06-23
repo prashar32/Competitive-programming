@@ -1,7 +1,7 @@
 // Author      :- Adarsh Prashar
 
 // Problem Link 
-// https://cses.fi/problemset/task/1634
+// https://cses.fi/problemset/task/1635
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -20,16 +20,17 @@ void solve(){
     for(int i=0 ; i<n ; i++){
         cin>>coins[i];
     }
-    vector<int>dp(x+1, 1e6+5);
-    dp[0] = 0;
+    vector<ll>dp(x+1, 0);
+    dp[0] = 1;
     for(int i=1 ; i<=x ; i++){
         for(int j=0 ; j<n ; j++){
-            if(i-coins[j]>=0 && dp[i-coins[j]] != 1e6+5){
-                dp[i] = min(dp[i], 1 + dp[i-coins[j]]);
+            if(i-coins[j] >= 0){
+                dp[i] += dp[max(i-coins[j], 0)];
             }
         }
+        dp[i] %= mod;
     }
-    (dp[x]==1e6+5) ? cout<<-1<<"\n" : cout<<dp[x]<<"\n";
+    cout<<dp[x]<<"\n";
     return;
 }
  

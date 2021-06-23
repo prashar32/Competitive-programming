@@ -1,8 +1,4 @@
 // Author      :- Adarsh Prashar
-// Codeforces  :- prashar32
-// Codechef    :- prashar32
-// LeetCode    :- prashar32
-// CSES        :- prashar32
 
 // Problem Link 
 // https://cses.fi/problemset/task/1633
